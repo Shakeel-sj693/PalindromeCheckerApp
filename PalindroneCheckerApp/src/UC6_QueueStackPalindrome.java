@@ -1,5 +1,4 @@
 import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.Stack;
@@ -9,7 +8,6 @@ public class UC6_QueueStackPalindrome {
     public static boolean isPalindromeUsingQueueAndStack(String input) {
         if (input == null) return false;
 
-        // Normalize input (ignore spaces/punctuation; case-insensitive)
         String cleaned = input.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
 
         Queue<Character> queue = new ArrayDeque<>();
@@ -17,17 +15,14 @@ public class UC6_QueueStackPalindrome {
 
         for (int i = 0; i < cleaned.length(); i++) {
             char c = cleaned.charAt(i);
-            queue.add(c);   
-            stack.push(c);  
+            queue.add(c);
+            stack.push(c);
         }
 
         while (!queue.isEmpty()) {
-            char fromQueue = queue.remove(); 
-            char fromStack = stack.pop();    
-
-            if (fromQueue != fromStack) {
-                return false;
-            }
+            char fromQueue = queue.remove();
+            char fromStack = stack.pop();
+            if (fromQueue != fromStack) return false;
         }
 
         return true;
